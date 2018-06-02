@@ -73,15 +73,15 @@ describe('filterVisibleTodos', () => {
     deepFreeze(allTodos);
 
     it('should show completed todos', () => {
-        expect(filterVisibleTodos(allTodos, 'SHOW_COMPLETED')).toEqual([completedTodo]);
+        expect(filterVisibleTodos(allTodos, 'completed')).toEqual([completedTodo]);
     });
 
     it('should show uncompleted todos', () => {
-        expect(filterVisibleTodos(allTodos, 'SHOW_UNCOMPLETED')).toEqual([uncompletedTodo]);
+        expect(filterVisibleTodos(allTodos, 'uncompleted')).toEqual([uncompletedTodo]);
     });
 
     it('should show all todos', () => {
-        expect(filterVisibleTodos(allTodos, 'SHOW_ALL')).toEqual(allTodos);
+        expect(filterVisibleTodos(allTodos, 'all')).toEqual(allTodos);
     });
 
     it('should throw an exception for unsupported filter value', () => {

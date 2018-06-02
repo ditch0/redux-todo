@@ -5,11 +5,11 @@ export default () => {
     return (
         <div>
             {'Show: '}
-            <FilterLink filter="SHOW_ALL">all</FilterLink>
+            <FilterLink filter="all">all</FilterLink>
             {', '}
-            <FilterLink filter="SHOW_COMPLETED">completed</FilterLink>
+            <FilterLink filter="completed">completed</FilterLink>
             {', '}
-            <FilterLink filter="SHOW_UNCOMPLETED">uncompleted</FilterLink>
+            <FilterLink filter="uncompleted">uncompleted</FilterLink>
         </div>
     )
 };

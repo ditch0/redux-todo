@@ -18,11 +18,11 @@ export default (state = [], action) => {
 export const filterVisibleTodos = (state, filter) => {
     return state.filter((todo) => {
         switch (filter) {
-            case 'SHOW_COMPLETED':
+            case 'completed':
                 return todo.completed;
-            case 'SHOW_UNCOMPLETED':
+            case 'uncompleted':
                 return !todo.completed;
-            case 'SHOW_ALL':
+            case 'all':
                 return true;
             default:
                 throw new Error(`Unsupported filter value: ${filter}`);
