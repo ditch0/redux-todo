@@ -1,5 +1,5 @@
 import deepFreeze from 'deep-freeze'
-import todos from './todos'
+import todos, { filterVisibleTodos } from './todos'
 
 describe('todos reducer', () => {
     it('should initialize state with empty list', () => {
@@ -55,5 +55,36 @@ describe('todos reducer', () => {
 
         deepFreeze(stateBefore);
         expect(todos(stateBefore, { type: 'TOGGLE_TODO', id: 2 })).toEqual(stateAfter)
+    });
+});
+
+describe('filterVisibleTodos', () => {
+    const completedTodo = {
+        id: 1,
+        text: 'first todo',
+        completed: true
+    };
+    const uncompletedTodo = {
+        id: 2,
+        text: 'second todo',
+        completed: false
+    };
+    const allTodos = [completedTodo, uncompletedTodo];
+    deepFreeze(allTodos);
+
+    it('should show completed todos', () => {
+        expect(filterVisibleTodos(allTodos, 'SHOW_COMPLETED')).toEqual([completedTodo]);
+    });
+
+    it('should show uncompleted todos', () => {
+        expect(filterVisibleTodos(allTodos, 'SHOW_UNCOMPLETED')).toEqual([uncompletedTodo]);
+    });
+
+    it('should show all todos', () => {
+        expect(filterVisibleTodos(allTodos, 'SHOW_ALL')).toEqual(allTodos);
+    });
+
+    it('should throw an exception for unsupported filter value', () => {
+        expect(() => filterVisibleTodos(allTodos, 'XXX')).toThrowError();
     });
 });

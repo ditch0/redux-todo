@@ -1,10 +1,8 @@
-import { combineReducers, createStore } from 'redux';
-import visibilityFilter from './reducers/visibilityFilter';
-import todos from './reducers/todos';
+import { createStore } from 'redux';
 import { loadState, saveState } from './localStorage';
+import todoApp from './reducers';
 
 export default () => {
-    const todoApp = combineReducers({ todos, visibilityFilter });
     const store = createStore(todoApp, loadState());
     store.subscribe(() => {
         saveState({
