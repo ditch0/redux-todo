@@ -29,16 +29,15 @@ export default combineReducers({ byId, allIds });
 const getAllTodos = ({ byId, allIds }) => allIds.map((id) => byId[id]);
 
 export const filterVisibleTodos = (state, filter) => {
-    return getAllTodos(state).filter((todo) => {
-        switch (filter) {
-            case 'completed':
-                return todo.completed;
-            case 'uncompleted':
-                return !todo.completed;
-            case 'all':
-                return true;
-            default:
-                throw new Error(`Unsupported filter value: ${filter}`);
-        }
-    })
+    let allTodos = getAllTodos(state);
+    switch (filter) {
+        case 'all':
+            return allTodos;
+        case 'completed':
+            return allTodos.filter(todo => todo.completed);
+        case 'uncompleted':
+            return allTodos.filter(todo => !todo.completed);
+        default:
+            throw new Error(`Unsupported filter value: ${filter}`);
+    }
 };
