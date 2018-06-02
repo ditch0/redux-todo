@@ -1,21 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import { combineReducers, createStore } from 'redux';
-import todos from './reducers/todos';
-import visibilityFilter from './reducers/visibilityFilter';
-import TodoApp from './containers/TodoApp';
-import { Provider } from 'react-redux';
+import configureStore from './configureStore';
+import Root from './containers/Root';
 import './index.css';
 
-const todoApp = combineReducers({ todos, visibilityFilter });
-const store = createStore(todoApp);
+const store = configureStore();
 ReactDOM.render(
-    <Provider store={store}>
-        <TodoApp />
-    </Provider>,
+    <Root store={store} />,
     document.getElementById('root')
 );
-store.subscribe(() => console.log(store.getState()));
 
 registerServiceWorker();
